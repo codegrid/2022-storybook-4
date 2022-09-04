@@ -1,5 +1,10 @@
+import React from 'react'
 import styles from './Button.module.css'
+import PropTypes from 'prop-types'
 
+/**
+ * ボタンコンポーネント
+ */
 export const Button = ({ size, variant, loading, fullWidth, children, ...props }) => {
   const classNameList = [styles.button]
   if (size) classNameList.push(styles[`size-${size}`])
@@ -13,4 +18,22 @@ export const Button = ({ size, variant, loading, fullWidth, children, ...props }
       {children}
     </button>
   )
+}
+
+Button.propTypes = {
+  /** ボタンのサイズを変える */
+  size: PropTypes.oneOf(['small', 'large']),
+  /** ボタンの見た目を変える */
+  variant: PropTypes.oneOf(['outlined', 'attention']),
+  /** 読み込み中の状態にする */
+  loading: PropTypes.bool,
+  /** ボタンを親要素いっぱいに広げる */
+  fullWidth: PropTypes.bool,
+  /** ボタンの内容 */
+  children: React.ReactNode,
+}
+
+Button.defaultProps = {
+  loading: false,
+  fullWidth: false,
 }
